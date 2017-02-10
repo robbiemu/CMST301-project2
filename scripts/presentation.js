@@ -1,5 +1,5 @@
 $(function() {
-  document.addEventListener('impress:stepenter', function (e) {
+/*  document.addEventListener('impress:stepenter', function (e) {
   switch (e.action) {
     case 'next':
     case 'prev':
@@ -8,23 +8,25 @@ $(function() {
     case 'goto':
       console.log('going to ' + e.step)
   }
-}, false);
+}, false); */
 
 function template_callback () {
   $('.oEmbed').each((i,el) => {
     const url = 'http://twitter.com' + $(el).data('path')
     if (url==='http://twitter.com') {
-        $(el).addClass("error");
+      $(el).addClass('error');
     } else {
         $.ajax({
-          url: "https://api.twitter.com/1/statuses/oembed.json?url="+url,
-          dataType: "jsonp",
+          url: 'https://api.twitter.com/1/statuses/oembed.json?url='+url,
+          dataType: 'jsonp',
           success: function(data){
             $(el).html(data.html);
           },
           error: function(e){
+            console.log(e.getAllResponseHeaders())
+            $(el).addClass('error');
             $(el).html('<blockquote>error connecting to twitter</blockquote>')
-          }           
+          } 
         });
     }
   })
@@ -43,8 +45,8 @@ $('section.series').find('div[template-for]').each((i, el) => {
 
   const inner_last = series[group].length
 
-  series[group].forEach((ele, j) => {
-    $.ajax({
+  series[group].forEach(async (ele, j) => {
+    await $.ajax({
         url: `templates/ele${ele}.template.html`,
         success: function (data) {
           let $copyEl = $(el).clone()
