@@ -43,8 +43,14 @@ router.get('/scripts/:filename', async ctx => {
   ctx.body = fs.createReadStream('scripts/'+ctx.params.filename)  
 })
 
+router.get('/:filename', async ctx => {
+  if(!/\.html$/.test(ctx.params.filename))
+    ctx.params.filename = index.html
+  ctx.type = 'text/html'
+  ctx.body = fs.createReadStream(ctx.params.filename)  
+})
 
-router.get(/\/?|\/index.html/, async ctx => {  
+router.get('/', async ctx => {  
   ctx.type = 'html'
   ctx.body = fs.createReadStream('index.html')
 })

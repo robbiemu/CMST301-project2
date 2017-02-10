@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>CMST 301 Project 2 - Effect of twitter in news media, using Trump's tweets as focal points</title>
+
+    <meta name="twitter:widgets:theme" content="light">
+    <meta name="twitter:widgets:link-color" content="#55acee">
+    <meta name="twitter:widgets:border-color" content="#55acee">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="styles/site.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.4.7/bluebird.min.js" integrity="sha256-ub+g/NI4m6dSDdm4RTNhaLvBDZhqp9C+fdw0bAEp0KE=" crossorigin="anonymous"></script>
+
+    <script src="scripts/presentation.js"></script>
+  </head>
+  <body>
+  
+    <div id="fallback-message">
+        <p>Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p>
+        <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
+    </div>
+
+    <div id="impress">
+      <!-- series 1: polarization to cut through contention -->
+      <section class="series">
+        <div template-for="ele in series">{{ ele }}</div>
+      </section>
+    </div>
+
+    <script src="scripts/impress.js"></script>
+  </body>
+</html>
