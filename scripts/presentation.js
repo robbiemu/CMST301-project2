@@ -25,6 +25,8 @@ function template_callback () {
 }
 
 // template numbers in series
+$('#impress').hide()
+
 let series = [...Array(15)].map((x,i) => {
   $('section.series').after(`<div id="ele${14-i}">{{ ele }}</div>`)
   return i
@@ -43,6 +45,7 @@ const promises = series.map(i => (
 
 Promise.all(promises).then(() => {
   $('section.series').detach()
+  $('#impress').show()
   template_callback()
 })
 
