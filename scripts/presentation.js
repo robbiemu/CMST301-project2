@@ -1,5 +1,5 @@
 $(function() {
-  
+
 function template_callback () {
   $('.oEmbed').each((i,el) => {
     const url = 'http://twitter.com' + $(el).data('path')
@@ -13,7 +13,7 @@ function template_callback () {
             $(el).html(data.html);
           },
           error: function (e) {
-            console.log(e.getAllResponseHeaders())
+            console.log(e, e.getAllResponseHeaders())
             $(el).addClass('error');
             $(el).html('<blockquote>error connecting to twitter</blockquote>')
           } 
