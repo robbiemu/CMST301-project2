@@ -1,0 +1,29 @@
+#fallback-message {
+  display: none;
+}
+.impress-not-supported > #fallback-message {
+  display: initial;
+}
+
+#impress img {
+  max-width: 66vmin;
+  max-height: 66vmin;
+}
+
+blockquote {
+  font-size: 2rem;
+}
+
+#impress > div > div {
+  width: 33rem;
+}
+
+.snaps {
+  display: flex;
+  align-content: center;
+}
+.snaps > div {
+  margin: 0.5rem;
+}
+
+body { background-color: whitesmoke; }
