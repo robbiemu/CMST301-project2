@@ -45,24 +45,23 @@ $('section.series').find('div[template-for]').each((i, el) => {
 
   const inner_last = series[group].length
 
-  series[group].forEach(async (ele, j) => {
-    await $.ajax({
+const promises = series[group].map((ele) => (
+    $.ajax({
         url: `templates/ele${ele}.template.html`,
-        success: function (data) {
-          const $copyEl = $(el).clone()
-          const r = new RegExp('\\{\\{\\s*' + item + '\\s*\\}\\}', 'g')
-          const html = $copyEl.html().replace(r, data)
+    }).then((data) => {
+        const $copyEl = $(el).clone()
+        const r = new RegExp('\\{\\{\\s*' + item + '\\s*\\}\\}', 'g')
+        const html = $copyEl.html().replace(r, data)
 
-          $(html).insertBefore(parent)
-        },
-        error: function (e) {
-          console.error(e)
-        }           
-      }).then(() => {
-        $(parent).detach()
-        if(i + 1 === outer_last && j + 1=== inner_last)
-          template_callback()
-      })
+        $(html).insertBefore(parent)
+    }, (e) => {
+        console.error(e)
+    })
+  ))
+
+  Promise.all(promises).then(() => {
+    $(parent).detach()
+    template_callback()
   })
 })
 
