@@ -19,10 +19,10 @@ function template_callback () {
         $.ajax({
           url: 'https://api.twitter.com/1/statuses/oembed.json?url='+url,
           dataType: 'jsonp',
-          success: function(data){
+          success: function (data) {
             $(el).html(data.html);
           },
-          error: function(e){
+          error: function (e) {
             console.log(e.getAllResponseHeaders())
             $(el).addClass('error');
             $(el).html('<blockquote>error connecting to twitter</blockquote>')
@@ -49,10 +49,11 @@ $('section.series').find('div[template-for]').each((i, el) => {
     await $.ajax({
         url: `templates/ele${ele}.template.html`,
         success: function (data) {
-          let $copyEl = $(el).clone()
-          let r = new RegExp('\\{\\{\\s*' + item + '\\s*\\}\\}', 'g')
+          const $copyEl = $(el).clone()
+          const r = new RegExp('\\{\\{\\s*' + item + '\\s*\\}\\}', 'g')
+          const html = $copyEl.html().replace(r, data)
 
-          $($copyEl.html().replace(r, data)).insertBefore(parent)
+          $(html).insertBefore(parent)
         },
         error: function (e) {
           console.error(e)

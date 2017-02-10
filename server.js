@@ -49,7 +49,7 @@ router.get(/\/?|\/index.html/, async ctx => {
   ctx.body = fs.createReadStream('index.html')
 })
 
-const default_route = async (ctx, next) => {
+const default_route = (ctx, next) => {
   let e = Error('Not Found')
   e.status = 404
   throw e
