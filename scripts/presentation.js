@@ -53,12 +53,12 @@ Object.keys(series).forEach(s => {
       })
     ))
 
-    Promise.series = (promiseArr) => {
-      return Promise.reduce(promiseArr, (values, promise) => {
+    Promise.series = async (promiseArr) => {
+      return await Promise.reduce(promiseArr, (values, promise) => {
         if(promise === undefined) {
           console.log('processing undefined promise') 
-        }
           return
+        }
         console.log(promise.toString())
         return promise().then((result) => {
           values.push(result);
